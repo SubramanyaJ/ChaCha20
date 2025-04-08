@@ -6,25 +6,25 @@
 #include <stdio.h>
 #include <stdint.h>
 
-uint8_t *
-get_key() {
+uint8_t *get_key() {
 	char buffer[256];
 	uint8_t *key = calloc(32, sizeof(uint8_t));
 
 	fprintf(stdout, "Enter password: ");
+	fflush(stdout);
 
-	// Remove newline if present
+	if (!fgets(buffer, sizeof(buffer), stdin)) {
+		fprintf(stderr, "Error reading input.\n");
+		free(key);
+		return NULL;
+	}
+
 	size_t len = strlen(buffer);
 	if (len > 0 && buffer[len - 1] == '\n') {
 		buffer[len - 1] = '\0';
 		len--;
 	}
-
-	if (len >= 32) {
-		memcpy(key, buffer, 32);
-	} else {
-		memcpy(key, buffer, len);
-	}
+	memcpy(key, buffer, len > 32 ? 32 : len);
 
 	return key;
 }
@@ -34,7 +34,7 @@ uint8_t *get_nonce() {
 
 	int fd = open("/dev/urandom", O_RDONLY);
 	if (fd < 0) {
-random_failure:
+	random_failure:
 		fprintf(stderr, "Warning: /dev/urandom could not be used.\nUsing stdlib's rand() instead.\n");
 		for (int i = 0; i < 12; i++) {
 			nonce[i] = rand();
