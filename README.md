@@ -10,7 +10,7 @@ cipher Salsa20/8, by Daniel J. Bernstein.
 Preferably, use a UNIX based system, as the code
 uses /dev/urandom for nonce generation.
 
-These packages are required for cloning and compilation : 'git gcc make cmake'.
+These packages are required for cloning and compilation : `git gcc make cmake`
 
 If you are using Debian based distributions :
 ```shell
