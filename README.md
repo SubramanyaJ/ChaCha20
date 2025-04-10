@@ -5,21 +5,6 @@ cipher Salsa20/8, by Daniel J. Bernstein.
 
 ---
 
-## Directory structure
-
-ChaCha20
-├── CMakeLists.txt
-├── README.md
-└── src
-    ├── CMakeLists.txt
-    ├── input.c
-    ├── input.h
-    ├── main.c
-    ├── operation.c
-    └── operation.h
-
----
-
 ## Compilation
 
 Preferably, use a UNIX based system, as the code
