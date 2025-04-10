@@ -34,7 +34,7 @@ uint8_t *get_nonce() {
 
 	int fd = open("/dev/urandom", O_RDONLY);
 	if (fd < 0) {
-	random_failure:
+random_failure:
 		fprintf(stderr, "Warning: /dev/urandom could not be used.\nUsing stdlib's rand() instead.\n");
 		for (int i = 0; i < 12; i++) {
 			nonce[i] = rand();
