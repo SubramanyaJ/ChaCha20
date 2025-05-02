@@ -1,7 +1,8 @@
 # ChaCha20
 
-A 256-bit stream cipher based on the 8-round
-cipher Salsa20/8, by Daniel J. Bernstein.
+ChaCha20 is a 256-bit stream cipher developed
+by Daniel J. Bernstein, an improved variant of
+Salsa20, using 20 rounds for encryption as specified in RFC 7539.
 
 ---
 

@@ -51,3 +51,17 @@ random_failure:
 
 	return nonce;
 }
+
+uint32_t load32_le(const uint8_t *src) {
+    return ((uint32_t)src[0]) |
+           ((uint32_t)src[1] << 8) |
+           ((uint32_t)src[2] << 16) |
+           ((uint32_t)src[3] << 24);
+}
+
+void store32_le(uint8_t *dst, uint32_t w) {
+    dst[0] = w & 0xff;
+    dst[1] = (w >> 8) & 0xff;
+    dst[2] = (w >> 16) & 0xff;
+    dst[3] = (w >> 24) & 0xff;
+}

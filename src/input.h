@@ -20,4 +20,11 @@ get_key();
 uint8_t *
 get_nonce();
 
+
+uint32_t
+load32_le(const uint8_t *src);
+
+void
+store32_le(uint8_t *dst, uint32_t w);
+
 #endif /* input.h included */

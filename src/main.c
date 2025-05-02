@@ -19,7 +19,7 @@ int main(int argc, char **argv) {
 	 */
 
 	if (argc != 3 || (strcmp(argv[2], "e") != 0 
-				&& strcmp(argv[2], "d") != 0)) {
+		&& strcmp(argv[2], "d") != 0)) {
 		fprintf(stderr, "Usage: %s <filename> <e|d>\n", argv[0]);
 		return 1;
 	}
@@ -44,7 +44,7 @@ int main(int argc, char **argv) {
 	}
 	else {
 		snprintf(out_filename, 256, "%.*s.dec", 
-				(int)(strlen(argv[1]) - 4), argv[1]);
+	   (int)(strlen(argv[1]) - 4), argv[1]);
 	}
 
 	int out_fd = open(out_filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
@@ -97,9 +97,14 @@ int main(int argc, char **argv) {
 		state[2] = 0x79622D32;
 		state[3] = 0x6B206574;
 
-		memcpy(&state[4], key, 32);
+
+		for (int i = 0; i < 8; i++) {
+			state[4 + i] = load32_le(key + i * 4);
+		}
 		state[12] = counter++;
-		memcpy(&state[13], nonce, 12);
+		state[13] = load32_le(nonce);
+		state[14] = load32_le(nonce + 4);
+		state[15] = load32_le(nonce + 8);
 
 		chacha20_block(state, keystream);
 
