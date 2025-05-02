@@ -6,8 +6,7 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-#include "input.h"
-#include "operation.h"
+#include "chacha20.h"
 
 int main(int argc, char **argv) {
 
