@@ -84,4 +84,16 @@ void quarterround(uint32_t *a, uint32_t *b, uint32_t *c, uint32_t *d);
  */
 void chacha20_block(uint32_t state[16], uint8_t output[64]);
 
+/**
+ * @brief Generates a Poly1305 authentication tag for the given message.
+ *
+ * This tag is used for message authentication in the ChaCha20-Poly1305 scheme.
+ *
+ * @param mac Pointer to a 16-byte buffer for the generated tag.
+ * @param msg Pointer to the message to be authenticated.
+ * @param msg_len Length of the message in bytes.
+ * @param key 32-byte key for Poly1305.
+ */
+void poly1305_auth(uint8_t *mac, const uint8_t *msg, size_t msg_len, const uint8_t key[32]);
+
 #endif /* chacha20.h included */

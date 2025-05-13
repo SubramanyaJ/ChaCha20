@@ -35,7 +35,7 @@ uint8_t *get_nonce() {
 
 	int fd = open("/dev/urandom", O_RDONLY);
 	if (fd < 0) {
-random_failure:
+	random_failure:
 		fprintf(stderr, "Warning: /dev/urandom could not be used.\nUsing stdlib's rand() instead.\n");
 		for (int i = 0; i < 12; i++) {
 			nonce[i] = rand();
@@ -54,17 +54,17 @@ random_failure:
 }
 
 uint32_t load32_le(const uint8_t *src) {
-    return ((uint32_t)src[0]) |
-           ((uint32_t)src[1] << 8) |
-           ((uint32_t)src[2] << 16) |
-           ((uint32_t)src[3] << 24);
+	return ((uint32_t)src[0]) |
+	((uint32_t)src[1] << 8) |
+	((uint32_t)src[2] << 16) |
+	((uint32_t)src[3] << 24);
 }
 
 void store32_le(uint8_t *dst, uint32_t w) {
-    dst[0] = w & 0xff;
-    dst[1] = (w >> 8) & 0xff;
-    dst[2] = (w >> 16) & 0xff;
-    dst[3] = (w >> 24) & 0xff;
+	dst[0] = w & 0xff;
+	dst[1] = (w >> 8) & 0xff;
+	dst[2] = (w >> 16) & 0xff;
+	dst[3] = (w >> 24) & 0xff;
 }
 
 void quarterround(uint32_t *a, uint32_t *b, uint32_t *c, uint32_t *d) {
@@ -95,4 +95,42 @@ void chacha20_block(uint32_t state[16], uint8_t output[64]) {
 	}
 
 	memcpy(output, working_state, 64);
+}
+
+void poly1305_auth(uint8_t *mac, const uint8_t *msg, size_t msg_len, const uint8_t key[32]) {
+	uint32_t r[4], s[4], acc[5] = {0};
+	memcpy(r, key, 16);
+	memcpy(s, key + 16, 16);
+
+	r[0] &= 0x3FFFFFFF;
+	r[1] &= 0xFFFFFFC0;
+	r[2] &= 0xFFFFFFC0;
+	r[3] &= 0x0FFFFFFF;
+
+	while (msg_len > 0) {
+		uint32_t block[4] = {0};
+		size_t block_len = (msg_len >= 16) ? 16 : msg_len;
+		memcpy(block, msg, block_len);
+		block[block_len / 4] |= (1 << (8 * (block_len % 4))); // 1 bit padding
+
+		for (int i = 0; i < 4; i++) {
+			acc[i] += block[i];
+		}
+
+		uint64_t t = 0;
+		for (int i = 0; i < 4; i++) {
+			t += (uint64_t)acc[i] * r[i];
+			acc[i] = (uint32_t)t;
+			t >>= 32;
+		}
+
+		msg += block_len;
+		msg_len -= block_len;
+	}
+
+	for (int i = 0; i < 4; i++) {
+		acc[i] += s[i];
+	}
+
+	memcpy(mac, acc, 16);
 }
