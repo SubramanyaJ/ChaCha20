@@ -1,0 +1,9 @@
+\begin{thebibliography}{1}
+
+\bibitem{bernstein2008chacha}
+Daniel~J Bernstein et~al.
+\newblock Chacha, a variant of salsa20.
+\newblock In {\em Workshop record of SASC}, volume~8, pages 3--5. Citeseer,
+  2008.
+
+\end{thebibliography}
