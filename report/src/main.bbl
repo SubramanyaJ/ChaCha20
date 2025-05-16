@@ -1,9 +1,76 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{bernstein2008chacha}
 Daniel~J Bernstein et~al.
 \newblock Chacha, a variant of salsa20.
 \newblock In {\em Workshop record of SASC}, volume~8, pages 3--5. Citeseer,
   2008.
+
+\bibitem{wikipedia_chacha20_poly1305}
+Wikipedia Contributors.
+\newblock Chacha20-poly1305, 2025.
+\newblock Accessed: 2025-05-16.
+
+\bibitem{paul2011rc4}
+Goutam Paul and Subhamoy Maitra.
+\newblock {\em RC4 stream cipher and its variants}.
+\newblock CRC press, 2011.
+
+\bibitem{klein2008attacks}
+Andreas Klein.
+\newblock Attacks on the rc4 stream cipher.
+\newblock {\em Designs, codes and cryptography}, 48:269--286, 2008.
+
+\bibitem{fluhrer2001weaknesses}
+Scott Fluhrer, Itsik Mantin, and Adi Shamir.
+\newblock Weaknesses in the key scheduling algorithm of rc4.
+\newblock In {\em Selected Areas in Cryptography: 8th Annual International
+  Workshop, SAC 2001 Toronto, Ontario, Canada, August 16--17, 2001 Revised
+  Papers 8}, pages 1--24. Springer, 2001.
+
+\bibitem{bernstein2005salsa20}
+Daniel Bernstein.
+\newblock Salsa20 security.
+\newblock {\em WWW http://cr. yp. to/snuffle/security. pdf}, 2005.
+
+\bibitem{tsunoo2007differential}
+Yukiyasu Tsunoo, Teruo Saito, Hiroyasu Kubo, Tomoyasu Suzaki, and Hiroki
+  Nakashima.
+\newblock Differential cryptanalysis of salsa20/8.
+\newblock In {\em Workshop Record of SASC}, volume~28. Citeseer, 2007.
+
+\bibitem{de2017chacha20}
+Fabrizio De~Santis, Andreas Schauer, and Georg Sigl.
+\newblock Chacha20-poly1305 authenticated encryption for high-speed embedded
+  iot applications.
+\newblock In {\em Design, automation \& test in europe conference \& exhibition
+  (DATE), 2017}, pages 692--697. IEEE, 2017.
+
+\bibitem{degabriele2021security}
+Jean~Paul Degabriele, J{\'e}r{\^o}me Govinden, Felix G{\"u}~nther, and
+  Kenneth~G Paterson.
+\newblock The security of chacha20-poly1305 in the multi-user setting.
+\newblock In {\em Proceedings of the 2021 ACM SIGSAC Conference on Computer and
+  Communications Security}, pages 1981--2003, 2021.
+
+\bibitem{gnu_make}
+Free~Software Foundation.
+\newblock Gnu make manual, n.d.
+\newblock Accessed: 2025-05-16.
+
+\bibitem{clang_manual}
+{LLVM Project}.
+\newblock {\em Clang Compiler User's Manual}, 2025.
+\newblock Accessed: 2025-05-16.
+
+\bibitem{clang_address_sanitizer}
+LLVM Team.
+\newblock Addresssanitizer, n.d.
+\newblock Accessed: 2025-05-16.
+
+\bibitem{duck_ai}
+DuckDuckGo.
+\newblock Duck.ai, 2025.
+\newblock Accessed: 2025-05-16.
 
 \end{thebibliography}

@@ -36,6 +36,8 @@
 \usepackage{titlesec}
 \usepackage{setspace}
 \usepackage{ragged2e}
+\usepackage{float}
+\usepackage{booktabs}
 
 % /* Start of document */
 \begin{document}
@@ -157,7 +159,7 @@ ChaCha20 is a stream cipher designed by Daniel J. Bernstein in 2008 as a variant
 The primary motivation behind the development of ChaCha20 was to create a cryptographic algorithm that is both secure and efficient, particularly in software implementations.
 Bernstein aimed to address some of the limitations and vulnerabilities found in existing ciphers, particularly in the context of high-performance applications.
 
-The development of ChaCha20 was primarily motivated by the need for a cryptographic algorithm that could achieve high security while maintaining efficiency, particularly in software implementations.
+The development of ChaCha20 was primarily motivated by the need for a cryptographic algorithm that could achieve high security while maintaining efficiency, particularly in software implementations \cite{wikipedia_chacha20_poly1305}.
 Prior to ChaCha20, many cryptographic algorithms, such as RC4 and even Salsa20, were often optimized for hardware execution.
 This hardware-centric design approach leveraged the parallel processing capabilities of dedicated cryptographic hardware, which could perform operations at high speeds.
 However, as the landscape of computing evolved, there was a significant shift towards software-based implementations, especially in consumer devices, mobile applications, and cloud services.
@@ -176,17 +178,17 @@ By focusing on both security and efficiency, ChaCha20 has become a widely adopte
 Its ability to deliver high performance without compromising security has made it a preferred choice for developers seeking to implement secure communication in a variety of applications.
 
 
-Before the introduction of ChaCha20, several stream ciphers were widely used, including RC4 and Salsa20.
+Before the introduction of ChaCha20, several stream ciphers were widely used, including RC4 variants \cite{paul2011rc4} and Salsa20.
 RC4, designed by Ron Rivest in 1987, was popular due to its simplicity and speed.
-However, it was later found to have significant vulnerabilities, such as biases in the keystream that could be exploited in certain contexts, leading to potential security breaches.
-RC4's vulnerabilities were primarily due to inherent biases in its keystream, resulting in a non-uniform distribution of output bytes.
+However, it was later found to have significant vulnerabilities, such as biases in the keystream that could be exploited in certain contexts, leading to potential security breaches \cite{klein2008attacks}.
+RC4's vulnerabilities were primarily due to inherent biases in its keystream, resulting in a non-uniform distribution of output bytes \cite{fluhrer2001weaknesses}.
 This meant that certain bytes were more likely to appear than others, creating predictable patterns.
 Attackers could exploit these biases, especially in scenarios where the same key was reused, such as in HTTPS sessions.
 For instance, in the "Fluhrer, Mantin, and Shamir" attack, attackers could recover portions of plaintext by analyzing the keystream.
 This predictability undermined the confidentiality of encrypted data, leading to significant security breaches and prompting the cryptographic community to recommend against the use of RC4 in favor of more secure alternatives.
 
-Salsa20, developed by Bernstein himself, was an improvement over RC4, offering better security and performance.
-However, it still faced scrutiny regarding its resistance to certain cryptanalytic attacks.
+Salsa20, developed by Bernstein himself, was an improvement over RC4, offering better security and performance \cite{bernstein2005salsa20}.
+However, it still faced scrutiny regarding its resistance to certain cryptanalytic attacks \cite{tsunoo2007differential}.
 Specifically, concerns arose about its key schedule and the potential for related-key attacks.
 Salsa20, designed by Bernstein as an enhancement over RC4, provided improved security and performance through its innovative design and efficient operations. However, it was not without vulnerabilities. Cryptanalysts raised concerns about its key schedule, which could potentially allow attackers to exploit related-key attacks, where knowledge of one key could lead to the compromise of another. Additionally, while Salsa20 demonstrated resilience against many known attacks, the possibility of future cryptanalytic advancements necessitated ongoing scrutiny and evaluation of its security in various contexts.
 
@@ -218,8 +220,8 @@ Nonce Reuse: Many encryption algorithms are vulnerable to attacks if the same no
 ChaCha20 mitigates this risk by generating a unique nonce for each encryption session, ensuring that even identical plaintexts yield different ciphertexts.
 Key Management: The utility emphasizes secure key management by deriving encryption keys from user-provided passwords, which can be further enhanced with key stretching techniques.
 This approach helps protect against brute-force attacks on weak passwords.
-Data Integrity: The utility incorporates the Poly1305 message authentication code (MAC) to ensure the integrity and authenticity of the encrypted data.
-This addresses the risk of data tampering and provides assurance that the data has not been altered during storage or transmission.
+Data Integrity: The utility incorporates the Poly1305 message authentication code (MAC) to ensure the integrity and authenticity of the encrypted data \cite{de2017chacha20}.
+This addresses the risk of data tampering and provides assurance that the data has not been altered during storage or transmission \cite{degabriele2021security}.
 By leveraging the strengths of ChaCha20 and addressing these critical weaknesses, the utility provides a secure and efficient solution for file encryption and decryption in today's digital landscape.
 
 \chapter{Methodology}
@@ -349,9 +351,110 @@ Steps in the Complete ChaCha20 Implementation :
 \chapter{Results and Discussion}
 %% Attach screenshots of the various steps of the results of your work
 %% Please provide figure number and captions for each screenshot.
+Images relevant to the operational features of the program have been attached below
+
+\section{Compilation}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{../assets/1_make.png}
+        \caption{Automated compilation using GNU Make}
+	\label{image}
+\end{figure}
+
+A suitable Makefile has been used for speeding up recompilation time.
+
+GNU Make is a build automation tool that reads Makefile instructions to compile code efficiently, tracking dependencies for minimal recompilation \cite{gnu_make}.
+It uses rules of the form target: dependencies followed by commands to build the target.
+It supports variables, conditionals, and functions for flexible build configurations.
+
+The clang compiler has been utilized, with the address sanitizer in development, and with level 3 optimization in release mode. \cite{clang_manual}
+
+AddressSanitizer (ASan) is a memory error detector for C/C++ programs, part of GCC and Clang. It detects out-of-bounds access, use-after-free, use-after-scope, and memory leaks.
+ASan adds runtime checks, making programs slightly slower and more memory-intensive. It provides clear error messages with stack traces for quick debugging \cite{clang_address_sanitizer}.
+
+-O3 in GCC is designed for performance-intensive applications where speed is a priority.
+In addition to the optimizations at the -O2 level, -O3 includes optimizations like aggressive inlining, loop unrolling, and vectorization.
+
+These optimizations can result in significant performance gains for programs that benefit from highly parallelized execution or intensive computational workloads.
+However, -O3 can sometimes lead to larger binary sizes, as more functions may be inlined, and loops are unrolled to reduce loop control overhead. While this typically improves performance, the increased code size can potentially lead to cache misses and slower performance on certain systems, especially those with limited memory or cache.
+
+\section{Encryption}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{../assets/2_encryption.png}
+        \caption{Usage help message and encryption}
+	\label{image}
+\end{figure}
+
+We demonstrate usage of the binary on a large file (1.1GiB).
+
+This also demonstrates the capability of modern stream ciphers to act not only on ASCII text data, but data at the binary level encoded in a multitude of formats.
+
+The program delivers an appropriate message when flags are not correctly provided.
+
+\section{Decryption}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{../assets/3_decryption.png}
+        \caption{Decryption with authenticity validation}
+	\label{image}
+\end{figure}
+
+This process shows the symmetric-key nature of the algorithm, while also demonstrating the decryption process.
+
+We note that the file size of the original file, encrypted file, and the decrypted file all remain the same.
+
+This consistency in file size is a characteristic of stream ciphers like ChaCha20, where each byte of plaintext is directly transformed into a corresponding byte of ciphertext without altering the overall length.
+The decrypted file is an exact byte-for-byte replica of the original, confirming the integrity of the encryption and decryption process.
+
+\section{Validation}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{../assets/4_Poly-1305.png}
+        \caption{Invalid MAC signature detection and invalidation of data}
+	\label{image}
+\end{figure}
+
+This test demonstrates the integrity protection provided by ChaCha20 with Poly1305 authentication mechanism.
+
+By modifying even a single byte of the encrypted file, the decryption process fails with an authentication error.
+This behavior ensures that any unauthorized modification of the ciphertext is immediately detected, protecting the integrity and authenticity of the data.
+
+
+
+%   \begin{table}[h!]
+%   \centering
+%   \begin{tabular}{l l l l}
+%   \toprule
+%   Size & Column 2 & Column 3 & Column 4 \\ 
+%   \midrule
+%   1 MiB  & Row 1,2  & Row 1,3  & Row 1,4  \\ 
+%   10 MiB & Row 2,2  & Row 2,3  & Row 2,4  \\ 
+%   100 MiB  & Row 3,2  & Row 3,3  & Row 3,4  \\ 
+%   \bottomrule
+%   \end{tabular}
+%   \caption{Benchmarking the program with an i5-2520M processor}
+%   \end{table}
+
 
 \chapter{Conclusion and Future Work}
 %% Briefly summarize the important results and conclusions presented in the work.
+
+In conclusion, this AAT examined the ChaCha20 stream cipher, focusing on its design, cryptographic security, and practical application when paired with Poly1305 for message authentication.
+ChaCha20, designed as a secure, high-performance alternative to traditional stream ciphers like RC4 and block ciphers such as AES, exhibits a unique approach based on non-cryptanalytic techniques.
+This methodology has proven to provide strong security guarantees, making ChaCha20 an effective solution for mitigating common attacks such as those targeting older ciphers.
+Furthermore, the careful choice of rotation and quarter-round operations within ChaCha20 ensures that it remains resistant to differential and linear cryptanalysis, solidifying its trustworthiness in cryptographic systems.
+
+The we also emphasized the significance of Poly1305 as a message authentication code (MAC), which, when combined with ChaCha20, enables authenticated encryption.
+Poly1305's ability to provide both confidentiality and integrity through a single operation is crucial, as it mitigates the risk of potential man-in-the-middle attacks and guarantees that the integrity of transmitted data remains intact.
+This combination of ChaCha20 with Poly1305 has garnered widespread adoption in protocols like TLS and is featured in popular systems such as Google's QUIC protocol, where both speed and security are paramount.
+
+Performance evaluation results presented in this work further underscore the practical advantages of ChaCha20.
+Unlike AES, which can be dependent on hardware acceleration for optimal performance, ChaCha20 is highly efficient in software implementations, making it particularly well-suited for environments with limited hardware support or resource constraints.
+
+Ultimately, this work reinforces the credibility and utility of ChaCha20 as a highly secure and efficient cryptographic solution.
+The combination of ChaCha20 and Poly1305 offers a versatile and reliable approach to authenticated encryption, making it an attractive alternative to established cryptographic schemes.
+As cryptographic needs evolve, ChaCha20-Poly1305 remains a strong candidate for future developments in cryptographic systems, providing a balanced approach to both speed and security\cite{duck_ai}.
 
 % Bibliography
 \fontsize{12}{8}\selectfont

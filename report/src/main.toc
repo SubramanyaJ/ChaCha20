@@ -6,4 +6,8 @@
 \contentsline {section}{\numberline {2.4}Message Authentication}{10}{}%
 \contentsline {section}{\numberline {2.5}Decryption Process}{10}{}%
 \contentsline {chapter}{\numberline {3}Results and Discussion}{11}{}%
-\contentsline {chapter}{\numberline {4}Conclusion and Future Work}{12}{}%
+\contentsline {section}{\numberline {3.1}Compilation}{11}{}%
+\contentsline {section}{\numberline {3.2}Encryption}{12}{}%
+\contentsline {section}{\numberline {3.3}Decryption}{12}{}%
+\contentsline {section}{\numberline {3.4}Validation}{13}{}%
+\contentsline {chapter}{\numberline {4}Conclusion and Future Work}{14}{}%
