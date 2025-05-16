@@ -1,4 +1,9 @@
 \contentsline {chapter}{\numberline {1}Introduction}{4}{}%
-\contentsline {chapter}{\numberline {2}Methodology}{5}{}%
-\contentsline {chapter}{\numberline {3}Results and Discussion}{6}{}%
-\contentsline {chapter}{\numberline {4}Conclusion and Future Work}{7}{}%
+\contentsline {chapter}{\numberline {2}Methodology}{7}{}%
+\contentsline {section}{\numberline {2.1}Key and Nonce Generation}{7}{}%
+\contentsline {section}{\numberline {2.2}Initialization}{8}{}%
+\contentsline {section}{\numberline {2.3}Block Processing}{8}{}%
+\contentsline {section}{\numberline {2.4}Message Authentication}{10}{}%
+\contentsline {section}{\numberline {2.5}Decryption Process}{10}{}%
+\contentsline {chapter}{\numberline {3}Results and Discussion}{11}{}%
+\contentsline {chapter}{\numberline {4}Conclusion and Future Work}{12}{}%

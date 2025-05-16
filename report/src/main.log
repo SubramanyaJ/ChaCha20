@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2025.3.31)  15 MAY 2025 17:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2025.3.31)  16 MAY 2025 21:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -85,6 +85,23 @@ Package: titlesec 2021/07/05 v2.14 Sectioning titles
 (/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2022/12/04 v6.7b set line spacing
 )
+(/usr/share/texlive/texmf-dist/tex/latex/ragged2e/ragged2e.sty
+Package: ragged2e 2022/11/13 v3.2 ragged2e Package
+\CenteringLeftskip=\skip52
+\RaggedLeftLeftskip=\skip53
+\RaggedRightLeftskip=\skip54
+\CenteringRightskip=\skip55
+\RaggedLeftRightskip=\skip56
+\RaggedRightRightskip=\skip57
+\CenteringParfillskip=\skip58
+\RaggedLeftParfillskip=\skip59
+\RaggedRightParfillskip=\skip60
+\JustifyingParfillskip=\skip61
+\CenteringParindent=\skip62
+\RaggedLeftParindent=\skip63
+\RaggedRightParindent=\skip64
+\JustifyingParindent=\skip65
+)
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count197
@@ -93,20 +110,20 @@ File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
 (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -167,12 +184,12 @@ e
 <../assets/vtu_logo.png, id=1, 317.185pt x 317.185pt>
 File: ../assets/vtu_logo.png Graphic file (type png)
 <use ../assets/vtu_logo.png>
-Package pdftex.def Info: ../assets/vtu_logo.png  used on input line 48.
+Package pdftex.def Info: ../assets/vtu_logo.png  used on input line 49.
 (pdftex.def)             Requested size: 56.9055pt x 56.90207pt.
 <../assets/college_logo.png, id=3, 1027.84pt x 1027.84pt>
 File: ../assets/college_logo.png Graphic file (type png)
 <use ../assets/college_logo.png>
-Package pdftex.def Info: ../assets/college_logo.png  used on input line 71.
+Package pdftex.def Info: ../assets/college_logo.png  used on input line 72.
 (pdftex.def)             Requested size: 56.9055pt x 56.89993pt.
 
 [1
@@ -181,20 +198,37 @@ Package pdftex.def Info: ../assets/college_logo.png  used on input line 71.
 ./assets/college_logo.png>]
 File: ../assets/college_logo.png Graphic file (type png)
 <use ../assets/college_logo.png>
-Package pdftex.def Info: ../assets/college_logo.png  used on input line 90.
+Package pdftex.def Info: ../assets/college_logo.png  used on input line 91.
 (pdftex.def)             Requested size: 56.9055pt x 56.89993pt.
+
+Overfull \hbox (6.19324pt too wide) in paragraph at lines 96--102
+\OT1/cmr/bx/n/12 Mi-tra GB (1BM23CS305)\OT1/cmr/m/n/12 , \OT1/cmr/bx/n/12 Shaik
+h Uzair Ahmed (1BM23CS307)\OT1/cmr/m/n/12 , \OT1/cmr/bx/n/12 Shashank
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 96--102
+
+ []
+
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 101.
+(Font)              <12> on input line 104.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 101.
+(Font)              <8> on input line 104.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 101.
- [1]
+(Font)              <6> on input line 104.
+[1]
 File: ../assets/college_logo.png Graphic file (type png)
 <use ../assets/college_logo.png>
-Package pdftex.def Info: ../assets/college_logo.png  used on input line 121.
+Package pdftex.def Info: ../assets/college_logo.png  used on input line 124.
 (pdftex.def)             Requested size: 56.9055pt x 56.89993pt.
- [1] (./main.toc)
+
+Overfull \hbox (25.02359pt too wide) in paragraph at lines 131--133
+[]\OT1/cmr/m/n/12 We, \OT1/cmr/bx/n/12 Sarthaka Mi-tra GB (1BM23CS305)\OT1/cmr/
+m/n/12 , \OT1/cmr/bx/n/12 Shaikh Uzair Ahmed (1BM23CS307)\OT1/cmr/m/n/12 ,
+ []
+
+[1] (./main.toc)
 \tf@toc=\write3
 \openout3 = `main.toc'.
 
@@ -206,8 +240,7 @@ Package pdftex.def Info: ../assets/college_logo.png  used on input line 121.
 
  [2
 
-]
-(./main.lot)
+] (./main.lot)
 \tf@lot=\write5
 \openout5 = `main.lot'.
 
@@ -217,36 +250,37 @@ Package pdftex.def Info: ../assets/college_logo.png  used on input line 121.
 Chapter 1.
 [4
 
-]
+] [5] [6]
 Chapter 2.
-[5
+[7
 
-]
+] [8] [9] [10]
 Chapter 3.
-[6
+[11
 
 ]
 Chapter 4.
-(./main.bbl [7
+(./main.bbl [12
 
-]) [8
+]) [13
 
 ] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 2283 strings out of 478008
- 36243 string characters out of 5839802
- 1855330 words of memory out of 5000000
- 22422 multiletter control sequences out of 15000+600000
- 516897 words of font info for 47 fonts, out of 8000000 for 9000
+ 2374 strings out of 478008
+ 38239 string characters out of 5839802
+ 1860330 words of memory out of 5000000
+ 22509 multiletter control sequences out of 15000+600000
+ 517503 words of font info for 49 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 57i,8n,62p,444b,228s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,8n,62p,622b,260s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (11 pages, 398541 bytes).
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on main.pdf (16 pages, 427003 bytes).
 PDF statistics:
- 60 PDF objects out of 1000 (max. 8388607)
- 36 compressed objects within 1 object stream
+ 81 PDF objects out of 1000 (max. 8388607)
+ 50 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
