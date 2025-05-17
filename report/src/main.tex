@@ -38,6 +38,19 @@
 \usepackage{ragged2e}
 \usepackage{float}
 \usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{atbegshi}
+
+% Border style
+\AtBeginShipout{%
+  \AtBeginShipoutUpperLeft{%
+    \tikz[overlay,remember picture] 
+    \draw[line width=1.5pt] 
+      ([xshift=1cm,yshift=-1cm]current page.north west) 
+        rectangle 
+      ([xshift=-1cm,yshift=1cm]current page.south east);
+  }%
+}
 
 % /* Start of document */
 \begin{document}
@@ -162,7 +175,6 @@ Bernstein aimed to address some of the limitations and vulnerabilities found in 
 The development of ChaCha20 was primarily motivated by the need for a cryptographic algorithm that could achieve high security while maintaining efficiency, particularly in software implementations \cite{wikipedia_chacha20_poly1305}.
 Prior to ChaCha20, many cryptographic algorithms, such as RC4 and even Salsa20, were often optimized for hardware execution.
 This hardware-centric design approach leveraged the parallel processing capabilities of dedicated cryptographic hardware, which could perform operations at high speeds.
-However, as the landscape of computing evolved, there was a significant shift towards software-based implementations, especially in consumer devices, mobile applications, and cloud services.
 
 Software implementations of cryptographic algorithms faced several challenges.
 Many existing algorithms were not designed with the constraints of software execution in mind, leading to inefficiencies such as high computational overhead and increased memory usage.
@@ -202,7 +214,6 @@ The design of ChaCha20 emphasizes simplicity and speed, making it suitable for a
 The security of ChaCha20 has been extensively analyzed, and it has been adopted in various cryptographic protocols, including TLS (Transport Layer Security) and SSH (Secure Shell).
 Its resilience against known cryptanalytic attacks and its performance characteristics have made it a preferred choice for modern encryption needs.
 
-2.
 Why This is Relevant Today
 In an era where data breaches and cyberattacks are increasingly common, the need for robust encryption solutions has never been more critical.
 ChaCha20's relevance today stems from several factors:
@@ -212,8 +223,7 @@ Performance Requirements: As applications become more demanding, the need for fa
 ChaCha20's design allows it to perform well on a variety of hardware, including mobile devices and embedded systems, where computational resources may be limited.
 Regulatory Compliance: Organizations are often required to comply with data protection regulations, such as GDPR (General Data Protection Regulation) and HIPAA (Health Insurance Portability and Accountability Act).
 Implementing strong encryption methods like ChaCha20 helps organizations meet these legal requirements and protect user privacy.
-3.
-What Weaknesses Are We Tackling?
+
 The implementation of the ChaCha20 file encryption and decryption utility specifically addresses several weaknesses associated with traditional encryption methods:
 
 Nonce Reuse: Many encryption algorithms are vulnerable to attacks if the same nonce is reused for multiple encryption operations.
@@ -223,6 +233,61 @@ This approach helps protect against brute-force attacks on weak passwords.
 Data Integrity: The utility incorporates the Poly1305 message authentication code (MAC) to ensure the integrity and authenticity of the encrypted data \cite{de2017chacha20}.
 This addresses the risk of data tampering and provides assurance that the data has not been altered during storage or transmission \cite{degabriele2021security}.
 By leveraging the strengths of ChaCha20 and addressing these critical weaknesses, the utility provides a secure and efficient solution for file encryption and decryption in today's digital landscape.
+
+\section{Cryptanalysis}
+\subsection{Boolean Encoding}
+Boolean encoding is a prominent method for analyzing various algorithms and computer systems, including the cryptanalysis of symmetric ciphers.
+
+Boolean encoding is a method of representing a complex problem (like a cipher algorithm) as a Boolean propositional formula.
+
+A Boolean propositional formula is an equation or set of equations composed of Boolean variables (true/false or 0/1) combined using logical operators (AND, OR, NOT).
+
+This encoding is essential because it allows the problem to be processed by SAT solvers, which are specialized programs that solve Boolean formulas.
+
+The focus of Sobon and Stachowiak's research was on using Boolean encoding to analyze ChaCha20 \cite{sobon2024chacha20}.
+The process begins by encoding the entire ChaCha20 algorithm as a Boolean propositional formula, transforming all its mathematical operations and logical transformations into Boolean logic.
+Randomly selected bits of plaintext and the cryptographic key are also encoded in Boolean form.
+
+Using this encoded model, the corresponding ciphertext is calculated through SAT solvers, specialized programs capable of solving Boolean formulas.
+The core of the cryptanalysis involves attempting to compute the secret key from the known plaintext and ciphertext using these SAT solvers.
+Multiple SAT solvers, including both older yet efficient versions and modern, popular ones, are tested for performance and effectiveness in this task.
+Additionally, the study explores ChaCha20’s properties by analyzing its standard configuration and weaker variants, providing insights into how SAT techniques perform against different levels of cipher strength.
+
+
+The process begins with:
+
+Encoding the ChaCha20 algorithm as a Boolean formula: This means expressing all the mathematical operations and logical transformations of ChaCha20 in Boolean logic.
+
+Encoding plaintext and cryptographic keys: Randomly chosen bits of plaintext (the message) and the key (the secret code) are also converted into Boolean formulas.
+
+Calculating ciphertext: By using SAT solvers on these formulas, the corresponding ciphertext is calculated.
+
+\subsection{Physical Side - Channel attacks}
+Physical side-channel attacks are a class of cryptanalytic techniques that exploit unintended information leakage from cryptographic devices during their operation.
+Unlike traditional cryptanalysis, which focuses on breaking the mathematical structure of a cipher, side-channel attacks target the physical properties of a device running the cryptographic algorithm.
+
+Common forms of side-channel leakage include timing information, power consumption, electromagnetic (EM) emissions, and acoustic signatures.
+For instance, timing attacks analyze the time taken by a device to perform cryptographic operations, while power analysis examines fluctuations in power usage to infer secret keys.
+EM side-channel attacks, a particularly sophisticated variant, involve capturing electromagnetic radiation emitted during cryptographic computations.
+This leakage can reveal sensitive information, such as key-dependent values manipulated within the cipher, making it a powerful tool for attackers with physical proximity to the target device.
+
+Modern cryptographic algorithms like ChaCha20, which rely on addition, rotation, and XOR (ARX) operations, are considered secure against timing attacks due to their constant-time design.
+However, they remain vulnerable to EM side-channel attacks because these attacks bypass algorithmic defenses and directly exploit physical characteristics.
+This makes understanding and mitigating side-channel vulnerabilities essential for the secure deployment of cryptographic systems in real-world environments.
+
+In their paper, Jungk and Bhasin \cite{jungk2017don}
+investigated EM-based side-channel attacks on ChaCha20.
+Two attacks were presented, one assuming a strong attacker
+with full control over the nonce while the other assumes
+a weak attacker having only partial control. The proposed
+attack is also applicable on Poly1305 based key generation
+which itself uses ChaCha20. Finally the potential of using a
+shuffling countermeasure to mitigate side-channel leakage is
+explored. Although shuffling can significantly reduce the SNR
+of the leakage, the countermeasure still remains vulnerable and
+can be potentially exploited with added effort. Future works
+could explore alternative lightweight countermeasures for ARX
+constructions.
 
 \chapter{Methodology}
 %% Briefly explain the various steps used in the complete AAT implementation
@@ -266,8 +331,7 @@ Steps in the Complete ChaCha20 Implementation :
 
 \section{Initialization}
 \begin{enumerate}
-    \item The state setup is a critical step in the ChaCha20 encryption process, as it establishes the initial conditions for generating the keystream.
-    The ChaCha20 state consists of 16 32-bit words, organized into a specific structure that combines fixed constants, the encryption key, the nonce, and a counter.
+    \item The ChaCha20 state consists of 16 32-bit words, organized into a specific structure that combines fixed constants, the encryption key, the nonce, and a counter.
     \begin{enumerate}
         \item Fixed Constants: The first four words of the state are fixed constants that serve as identifiers for the ChaCha20 algorithm.
     These constants are predefined values that help distinguish the ChaCha20 cipher from other algorithms, ensuring that the initialization process is consistent and recognizable.
@@ -285,7 +349,7 @@ Steps in the Complete ChaCha20 Implementation :
 
 \section{Block Processing}
 \begin{enumerate}
-    \item Keystream generation is a fundamental aspect of the ChaCha20 encryption process, where the initialized state undergoes a series of transformations to produce a pseudorandom keystream.
+    \item Here the initialized state undergoes a series of transformations to produce a pseudorandom keystream.
     This keystream is then used to encrypt plaintext by performing an XOR operation with the data.
 
 \begin{enumerate}
@@ -321,8 +385,8 @@ Steps in the Complete ChaCha20 Implementation :
 \end{enumerate}
 
 \section{Message Authentication}
-    The Poly1305 Message Authentication Code (MAC) is a critical component of the ChaCha20 encryption process, providing a mechanism to ensure the integrity and authenticity of the encrypted data.
-    This step is essential for verifying that the ciphertext has not been altered and that it originates from a legitimate source.
+    This provides a mechanism to ensure the integrity and authenticity of the encrypted data.
+    This step is required for verifying that the ciphertext has not been altered and that it originates from a legitimate source.
 
 \begin{enumerate}
         \item MAC Generation: After the encryption process is complete, the Poly1305 algorithm is employed to generate a MAC.

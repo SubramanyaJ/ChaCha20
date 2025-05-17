@@ -53,6 +53,19 @@ Jean~Paul Degabriele, J{\'e}r{\^o}me Govinden, Felix G{\"u}~nther, and
 \newblock In {\em Proceedings of the 2021 ACM SIGSAC Conference on Computer and
   Communications Security}, pages 1981--2003, 2021.
 
+\bibitem{sobon2024chacha20}
+Artur Sobo{\'n} and Sylwia Stachowiak.
+\newblock Chacha20 cipher cryptanalysis through sat problem solving.
+\newblock In {\em 2024 IEEE 17th International Scientific Conference on
+  Informatics (Informatics)}, pages 355--361. IEEE, 2024.
+
+\bibitem{jungk2017don}
+Bernhard Jungk and Shivam Bhasin.
+\newblock Don't fall into a trap: Physical side-channel analysis of
+  chacha20-poly1305.
+\newblock In {\em Design, Automation \& Test in Europe Conference \& Exhibition
+  (DATE), 2017}, pages 1110--1115. IEEE, 2017.
+
 \bibitem{gnu_make}
 Free~Software Foundation.
 \newblock Gnu make manual, n.d.

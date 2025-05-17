@@ -1,8 +1,8 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Automated compilation using GNU Make}}{11}{}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Usage help message and encryption}}{12}{}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Decryption with authenticity validation}}{12}{}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Invalid MAC signature detection and invalidation of data}}{13}{}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Automated compilation using GNU Make}}{12}{}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Usage help message and encryption}}{13}{}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Decryption with authenticity validation}}{13}{}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Invalid MAC signature detection and invalidation of data}}{14}{}%
 \addvspace {10\p@ }
