@@ -1,3 +1,14 @@
+/**
+ * @file chacha20.h
+ * @brief Header file for ChaCha20 stream cipher implementation.
+ *
+ * @author Subramanya J
+ * subramanyajaradhya@gmail.com
+ *
+ * Implements the functions defined in chacha20.h
+ */
+
+
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdlib.h>

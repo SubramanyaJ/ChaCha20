@@ -1,5 +1,5 @@
 CC= clang
-CFLAGS= -Wall -O3 -Werror -Wextra
+CFLAGS= -O3 -g
 
 all:
 	$(CC) main.c chacha20.c -o chacha20 $(CFLAGS)

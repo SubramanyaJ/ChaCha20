@@ -40,6 +40,7 @@
 \usepackage{booktabs}
 \usepackage{tikz}
 \usepackage{atbegshi}
+\usepackage{amsmath}
 
 % Border style
 \AtBeginShipout{%
@@ -311,8 +312,7 @@ Steps in the Complete ChaCha20 Implementation :
     Common KDFs include PBKDF2, bcrypt, and Argon2, each designed to enhance security through these mechanisms.
     By deriving a secure key from a password, the ChaCha20 encryption process can effectively protect sensitive data against unauthorized access.
     Proper key management practices are essential to maintain the confidentiality and integrity of the derived key throughout its lifecycle.
-    \item Nonce generation is a vital component of the encryption process, particularly in stream ciphers like ChaCha20.
-    A nonce, or "number used once," is a unique value that is generated for each encryption operation.
+    \item Nonce generation : A nonce, or "number used once," is a unique value that is generated for each encryption operation.
     In the case of ChaCha20, the nonce is 12 bytes (96 bits) in length, providing a sufficiently large space to ensure uniqueness across multiple encryption sessions.
 
     The primary purpose of the nonce is to ensure that the same plaintext encrypted multiple times with the same key produces different ciphertexts.
@@ -393,6 +393,16 @@ Steps in the Complete ChaCha20 Implementation :
         This MAC is computed over the ciphertext and any associated data (AAD) that may be included in the encryption operation.
         The use of AAD allows for additional context to be authenticated without being encrypted, which is useful in various applications where metadata needs to be verified.
         \item Key Usage: The same key used for the ChaCha20 encryption is also utilized in the Poly1305 MAC computation.
+    \[
+    \text{MAC} = \left( \sum_{i=0}^{n-1} m_i \times r^i \right) \mod (2^{130} - 5)
+    \]
+    \begin{enumerate}
+    \item \( m_i \) are blocks of the message, treated as 128-bit integers.
+    \item \( r \) is a 128-bit value derived from the Poly1305 key, but it is not directly used as a secret.
+    \item \( n \) is the number of blocks in the message.
+    \item The modulo \( 2^{130} - 5 \) is a large prime number, ensuring security and preventing overflow.
+
+    \end{enumerate}
         This ensures that the MAC is tightly coupled with the encryption process, enhancing security.
         The MAC is derived from the ciphertext and the associated data, producing a fixed-length output (typically 16 bytes) that serves as a cryptographic signature for the data.
         Integrity and Authenticity: The primary purpose of the Poly1305 MAC is to provide assurance that the ciphertext has not been tampered with during transmission or storage.
@@ -509,7 +519,7 @@ ChaCha20, designed as a secure, high-performance alternative to traditional stre
 This methodology has proven to provide strong security guarantees, making ChaCha20 an effective solution for mitigating common attacks such as those targeting older ciphers.
 Furthermore, the careful choice of rotation and quarter-round operations within ChaCha20 ensures that it remains resistant to differential and linear cryptanalysis, solidifying its trustworthiness in cryptographic systems.
 
-The we also emphasized the significance of Poly1305 as a message authentication code (MAC), which, when combined with ChaCha20, enables authenticated encryption.
+Then we also emphasized the significance of Poly1305 as a message authentication code (MAC), which, when combined with ChaCha20, enables authenticated encryption.
 Poly1305's ability to provide both confidentiality and integrity through a single operation is crucial, as it mitigates the risk of potential man-in-the-middle attacks and guarantees that the integrity of transmitted data remains intact.
 This combination of ChaCha20 with Poly1305 has garnered widespread adoption in protocols like TLS and is featured in popular systems such as Google's QUIC protocol, where both speed and security are paramount.
 
